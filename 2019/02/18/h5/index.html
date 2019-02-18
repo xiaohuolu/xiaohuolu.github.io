@@ -1,0 +1,30 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>h5语义标签 | 冰璃</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">h5语义标签</h1><a id="logo" href="/.">冰璃</a><p class="description">雪肤红眸，素发如瀑</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">h5语义标签</h1><div class="post-meta">Feb 18, 2019<span> | </span><span class="category"><a href="/categories/前端/">前端</a></span></div><div class="post-content"><p>h5 设计的最主要的目的就是为了在移动设备上面支持多媒体</p>
+<p>常用语义标签。</p>
+<p><header></header></p>
+<p><footer></footer></p>
+<p><article><article></article></article></p>
+<p><aside><aside></aside></aside></p>
+<nav><nav><br><section><section><br><br><br>h5 语义标签不兼容低版本ie 。<br>解法一：<br>通过document.createElement创建一个h5标签<br>如： html：<br><br><nav>导航</nav>
+
+<p>js:</p>
+<p>document.createElement(“nav);</p>
+<p>就可以用nav这个标签了。</p>
+<p>解法二：<br>通过引入 html5shiv.js 插件 </p>
+<p>终极解决：</p>
+<p>引入 html5shiv 后，可以兼容到低版本ie ，但谷歌这些浏览器并不需要这个插件，现在用谷歌访问也会加载这个插件。</p>
+<p>可以用  </p>
+<!--[if lte IE 8]>
+
+<![endif]-->
+<p>包围引入的script标签。 lte是小于等于的意思。 就是小于等于ie6的情况下才会执行这一段。 </p>
+</section></section></nav></nav></div><div class="tags"><a href="/tags/h5/">h5</a></div><div class="post-nav"><a class="next" href="/2019/02/13/雪肤红眸，素发如瀑/">雪肤红眸，素发如瀑</a></div><div id="container"></div><link rel="stylesheet" type="text/css" href="//unpkg.com/gitalk/dist/gitalk.css?v=0.0.0"><script type="text/javascript" src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js?v=0.0.0"></script><script type="text/javascript" src="//unpkg.com/gitalk/dist/gitalk.min.js?v=0.0.0"></script><script>var gitalk = new Gitalk({
+  clientID: 'a41b62a0fd6bbf0e4420',
+  clientSecret: '967058332166270e103b22da8f361fff4a9cedf9',
+  repo: 'xiaohuolu.github.io',
+  owner: 'xiaohuolu',
+  admin: ['xiaohuolu'],
+  id: md5(location.pathname),
+  distractionFreeMode: false
+})
+gitalk.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/游戏/">游戏</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/h5/" style="font-size: 15px;">h5</a> <a href="/tags/幽城幻剑录/" style="font-size: 15px;">幽城幻剑录</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/02/18/h5/">h5语义标签</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/13/雪肤红眸，素发如瀑/">雪肤红眸，素发如瀑</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/13/hello-world/">Hello World</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2019 <a href="/." rel="nofollow">冰璃.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
