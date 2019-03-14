@@ -1,0 +1,171 @@
+---
+title: 解构、函数、扩展运算、数组
+date: 2019-03-13 17:48:38
+tags: es6
+categories: 前端
+---
+
+### 解构赋值
+
+ 1.左右两边必须一致
+ 2.必须定义和赋值同步完成
+
+ ---
+ 解构数组:
+
+```
+  let [a,b,c]=[12,5,8]
+  
+  alert(a+','+b+','+c)
+```
+
+解构json:
+
+```
+  let {a,b,c}={a:12,b:15,c:8}
+
+  alert(a+','+b+','+c)
+```
+
+粒度:
+
+```
+  let [a,b,c]=[12,{a:{n1:5,n2:8},b:12,c:3},5]
+
+  let [n1,{a,b,c},n2]=[12,{a:{n1:5,n2:8},b:12,c:3},5]
+```
+
+错误写法:
+
+```
+  let [a,b,c] 
+
+  [a,b,c]=[12,5,8] 
+
+
+```
+
+### 箭头函数
+
+1.如果有且仅有一个参数，圆括号可以省略
+2.如果函数体只有一句且是return，花括号可以省略
+3.箭头函数不支持arguments
+
+写法:
+```
+(a,b)=>{
+  //函数体
+}
+```
+
+默认参数:
+```
+(a=5,b=12,c)=>{
+
+}
+```
+
+
+### 扩展运算符
+
+剩余参数:
+剩余参数必须得在形参最后
+
+```
+function show(a,b, ...args){
+  console.log(a,b,args)
+}
+show(5,2,12,5,9)
+```
+
+除了用在函数的剩余参数里，还可以用来展开一个数组
+
+```
+  let arr=[1,2,5,7]
+
+  let arr2=[5,12, ...arr,3]
+```
+
+### 数组  
+
+方法:
+map()      //映射   
+reduce()   //汇总，（算平均分，商品总量，总销售额之类的）
+filter()   //过滤
+forEach()  //遍历
+from()     //将类数组转为数组
+
+map:
+
+```
+//返回是否大于等于60
+
+let arr=[29,19,38,22,24,89,62]
+
+let arr2=arr.map(item=>item>=60）
+
+alert(arr2)
+```
+
+filter:
+
+```
+//返回奇数
+
+let arr=[29,19,38,22,24,89,62]
+
+let arr2=arr.filter(item=>item%2)
+
+alert(arr2)
+```
+
+forEach:
+
+``` 
+//求和
+let arr=[29,19,38,22,24,89,62]
+let num=0
+let arr2=arr.forEach(item=>num+=item)
+
+alert(num)
+```
+
+reduce:
+参数:
+tem 临时结果，当前的值
+item 下一个值 
+index 下标
+``` 
+//求平均值
+let arr=[29,19,38,22,24,89,62]
+let ava=arr.reduce((tem,item,index)=>{
+    if(index<arr.length-1){
+      return tem+item
+    }else{
+      return (tem+item)/arr.length
+    }
+})
+
+alert(ava)
+```
+
+
+from:
+将类数组转为数组 
+语法:
+Array.from(类数组)
+
+```
+//把div变成黄色，这样写不行，aDiv是一个类数组，有下标有length，但不是array，没有forEach，需要用Array.from(aDiv)转为数组
+
+//html
+<div></div>
+<div></div>
+<div></div>
+
+//js
+let aDiv=document.getElementsByTagName("div")
+Array.from(aDiv).forEach(div=>{
+  div.style.background="yellow"
+})
+```
