@@ -1,0 +1,97 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>（通信相关）跨域、http、表单、ajax | 冰璃</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">（通信相关）跨域、http、表单、ajax</h1><a id="logo" href="/.">冰璃</a><p class="description">雪肤红眸，素发如瀑</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">（通信相关）跨域、http、表单、ajax</h1><div class="post-meta">Apr 11, 2019<span> | </span><span class="category"><a href="/categories/前端/">前端</a></span></div><div class="post-content"><h3 id="数据交互"><a href="#数据交互" class="headerlink" title="数据交互"></a>数据交互</h3><p>1.表单               最基本最简单的 http数据请求其实都是表单<br>2.ajax              不用刷新，ajax 可以跨域，但性能低一些，单向，跨域麻烦<br>3.jsonp             跨域，安全性太差，只能发起get请求<br>4.websocket         快，双向，跨域，性能高，双向（双工），直接跨域</p>
+<p><strong>对于服务器来说，除了websocket其他都是表单，它区分不出来到底是form还是ajax还是jsonp</strong></p>
+<hr>
+<h3 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h3><p>注意：跨域是有风险的，如xss</p>
+<p>举例：<a href="http://www.baidu.com/a.html里有一段js，要读取www.360.cn/1.txt" target="_blank" rel="noopener">www.baidu.com/a.html里有一段js，要读取www.360.cn/1.txt</a> 里的内容，就跨域了。<br>xss（跨站脚本攻击），其实就是利用了你的懒，从其他域名下读取了什么东西过来，也不做校验就直接执行了，有可能对方就发现你读他东西了，给你植入一些不好的东西，大概是这样。</p>
+<p>跨域的常见场景：<br>1.很多网站都有很多域名，如360buy.com - jd.com ，  t.sina.cn - weibo.com  你知道他们是一个网站下的域名，但浏览器不知道。<br>2.第三方数据交互的需求，如一些网站有qq登录，微信登录，微博登录这种，一般是你发一个校验请求给第三方，他来帮你校验，这种时候必须要跨域。</p>
+<hr>
+<h3 id="http，https"><a href="#http，https" class="headerlink" title="http，https"></a>http，https</h3><p><strong>http</strong>    容易被攻击</p>
+<ul>
+<li>http1.0   <ul>
+<li>一次性连接</li>
+</ul>
+</li>
+<li>http1.1   <ul>
+<li>保持连接  </li>
+<li>性能提升</li>
+</ul>
+</li>
+<li>http2.0(草案)     <ul>
+<li>强制https</li>
+<li>自带双向通信</li>
+<li>多路复用</li>
+</ul>
+</li>
+</ul>
+<p>  <strong>浏览器与服务器建立通信的过程，三次握手：</strong><br>  客户端（浏览器）向服务器发送连接请求，服务器接受请求（也可以拒绝，如http协议不支持，或者服务器负载太高没有空闲资源），然后客户端发送请求，服务器返回数据并关闭连接。 </p>
+<p><strong>https</strong>    安全<br>https s就是security                   </p>
+<p>  <strong>TCP、UDP</strong></p>
+<ul>
+<li><p>TCP——传输控制协议      文件下载、聊天</p>
+<ul>
+<li>1.丢失重传，保证到达</li>
+<li>2.错误重发，保证质量</li>
+<li>3.保证顺序  </li>
+</ul>
+</li>
+<li><p>UDP——用户数据报协议    对质量没有绝对要求，对延迟有很高要求。  ip电话 、视频直播</p>
+<ul>
+<li>1.不保证到达</li>
+<li>2.不保证质量</li>
+<li>3.不保证顺序</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>  <strong>osi七层交换参考模型</strong></p>
+<p>  1.物理层                               物理学家、通信工程–材料、电压<br>  2.链路层                               内网寻址    ARP、ICMP<br>  3.网络层                               外网寻址    IP<br>  4.传输层                               通信稳定性  tcpv<br>  5.表现层（被传输层取代了）                统一各个网络的结构<br>  6.会话层（有其他方式可以记录，比如cookie）  希望可以记录状态，不希望无状态<br>  7.应用层                               HTTP、FTP、SMTP、POP3</p>
+<p>  <strong>五层模型</strong><br>  1.物理层<br>  2.链路层<br>  3.网络层<br>  4.传输层<br>  5.应用层</p>
+<p>  <strong>无状态通信</strong><br>  正常情况下，咱们的绝大多数通信都是无状态的。</p>
+<p>   简单说就是你向服务器发一个请求，它给你个东西，你就走了。下回再请求它不记得你，它会认为你是第一次来。</p>
+<hr>
+<h3 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;http:localhost/a.php&quot; method=&quot;GET&quot;&gt;</span><br><span class="line">  用户名:&lt;input type=&quot;text&quot; name=&quot;user&quot; value=&quot;&quot; /&gt;&lt;br&gt;</span><br><span class="line">  密码:&lt;input type=&quot;password&quot; name=&quot;pass&quot; /&gt;</span><br><span class="line">  &lt;input type=&quot;submit&quot; value=&quot;提交&quot; /&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>1.属性<ul>
+<li>action 提交到哪</li>
+<li>method 方式——GET、POST、PUT、HEADER、DELETE、也可以自定义</li>
+<li>name   必须要加，可以重复。服务器靠name才知道你传的是什么</li>
+<li>submit 提交按钮</li>
+</ul>
+</li>
+<li>2.数据提交方法（GET和POST安全性完全一样，https才是真安全）<ul>
+<li>GET </li>
+<li>POST<br><strong>get</strong> ：   1.数据放在URL里面，看得见 2.容量有限（32k），实际容量小于32k。 3.有缓存（不适合读取经常变的数据，股票新闻等。可以想办法去掉缓存）。 适合分享、收藏<br><strong>POST</strong>：  1.看不见 2.数据放在http-body里。容量很大（1g）3.没缓存。  没法分享、收藏</li>
+</ul>
+</li>
+<li>3.校验</li>
+</ul>
+<p>表单重复提交处理：<br>1.开始提交的时候禁用submit<br>2.完成后（成功、失败）启用submit</p>
+<hr>
+<h3 id="ajax"><a href="#ajax" class="headerlink" title="ajax"></a>ajax</h3><p>表单提交比较稳定，尤其在网络很差的时候，ajax更偏向用户体验。</p>
+<p><strong>http 状态码：</strong></p>
+<ul>
+<li>1xx   消息</li>
+<li>2xx   成功</li>
+<li>3xx   重定向<ul>
+<li>301 永久重定向——浏览器永远不会请求老的地址</li>
+<li>302 临时重定向——浏览器下回还会请求老的地址（一般用临时）</li>
+<li>304 缓存 </li>
+</ul>
+</li>
+<li>4xx   请求错误（客户端）</li>
+<li>5xx   服务端错误</li>
+<li>6xx   扩展</li>
+</ul>
+<p><strong>原生ajax怎么写</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">let xhr = new XMLHttpRequest()</span><br><span class="line"></span><br><span class="line">//连接</span><br><span class="line">  //true异步</span><br><span class="line">  //false同步</span><br><span class="line">  xhr.open(&quot;GET&quot;,&quot;1.php&quot;,true)</span><br><span class="line"></span><br><span class="line">//发送</span><br><span class="line">  xhr.send()</span><br><span class="line"></span><br><span class="line">//接收</span><br><span class="line">  xhr.onreadystatechange=function()&#123;</span><br><span class="line">      //0 初始化——刚刚创建</span><br><span class="line">      //1 已连接</span><br><span class="line">      //2 已发送</span><br><span class="line">      //3 已接收——头</span><br><span class="line">      //4 已接收——body</span><br><span class="line"></span><br><span class="line">      if(xhr.readyState==4)&#123;</span><br><span class="line">          //成功——2xx，304</span><br><span class="line">          if( xhr.status &gt;= 200 &amp;&amp; xhr.status &lt;= 300 || xhr.status == 304)&#123;</span><br><span class="line">              //xhr.responseText 文本</span><br><span class="line">           console.log(“成功” + xhr.responseText)</span><br><span class="line">          &#125;else&#123;</span><br><span class="line">           console.log(“失败”)</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>同步</strong><br>串行，一个一个来，前一个操作如果没完事，后面的等着<br><strong>异步</strong><br>并行，一堆一块进行，前面完没完事无所谓，后面都能继续开始。</p>
+</div><div class="tags"><a href="/tags/es6/">es6</a></div><div class="post-nav"><a class="next" href="/2019/03/15/ajax、promise、generator、async，await/">ajax、promise、generator、async，await</a></div><div id="container"></div><link rel="stylesheet" type="text/css" href="//unpkg.com/gitalk/dist/gitalk.css?v=0.0.0"><script type="text/javascript" src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js?v=0.0.0"></script><script type="text/javascript" src="//unpkg.com/gitalk/dist/gitalk.min.js?v=0.0.0"></script><script>var gitalk = new Gitalk({
+  clientID: 'a41b62a0fd6bbf0e4420',
+  clientSecret: '967058332166270e103b22da8f361fff4a9cedf9',
+  repo: 'xiaohuolu.github.io',
+  owner: 'xiaohuolu',
+  admin: ['xiaohuolu'],
+  id: md5(location.pathname),
+  distractionFreeMode: false
+})
+gitalk.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/h5/" style="font-size: 15px;">h5</a> <a href="/tags/es6/" style="font-size: 15px;">es6</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/04/11/（通信相关）跨域、http、表单、ajax/">（通信相关）跨域、http、表单、ajax</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/15/ajax、promise、generator、async，await/">ajax、promise、generator、async，await</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/14/json、字符串、面向对象/">json、字符串、面向对象</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/13/解构、函数、扩展运算、数组/">解构、函数、扩展运算、数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/20/canvas/">canvas 基础用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/18/智能表单/">智能表单</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/18/video多浏览器支持/">video多浏览器支持</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/18/h5语义标签/">h5语义标签</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2019 <a href="/." rel="nofollow">冰璃.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
