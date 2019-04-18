@@ -1,7 +1,7 @@
 ---
-title: ajax、promise、generator
+title: ajax、promise、generator、async，await
 date: 2019-03-15 16:10:12
-tags: es6
+tags: js
 categories: 前端
 ---
 ### ajax
@@ -120,4 +120,33 @@ next : next一下走一步 ，一般可以等数据请求完了再next
     let res2=gen.next()
 
       console.log(res2)
+```
+
+### async，await 
+基本用法：
+
+```
+  async:function(){
+    //同步操作
+    //同步操作
+
+     //当有异步操作时
+     let 结果=await 异步操作-promise、generator、另一个async函数
+
+    //同步操作
+    //同步操作
+  }
+```
+
+加入错误处理，多个处理可以多个try catch
+```
+   async function show(){
+     try{
+       let data= await $.ajax({url:url,dataType:'json'})
+
+       console.log(data)
+     }catch(e){
+       console.log(e)
+     }
+   }
 ```

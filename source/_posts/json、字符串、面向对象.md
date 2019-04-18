@@ -1,7 +1,7 @@
 ---
     title: json、字符串、面向对象
     date: 2019-03-14 14:26:00
-    tags: es6
+    tags: js
     categories: 前端
 ---
 
