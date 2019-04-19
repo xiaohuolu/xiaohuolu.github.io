@@ -56,6 +56,7 @@
 <li>method 方式——GET、POST、PUT、HEADER、DELETE、也可以自定义</li>
 <li>name   必须要加，可以重复。服务器靠name才知道你传的是什么</li>
 <li>submit 提交按钮</li>
+<li>enctype 选择提交哪种数据</li>
 </ul>
 </li>
 <li>2.数据提交方法（GET和POST安全性完全一样，https才是真安全）<ul>
@@ -66,6 +67,12 @@
 <li>3.校验</li>
 </ul>
 <p>表单重复提交处理：<br>1.开始提交的时候禁用submit<br>2.完成后（成功、失败）启用submit</p>
+<p><strong>表单的三种enctype</strong></p>
+<ol>
+<li>text/plain（纯文本）<br> 纯文本，用的很少               </li>
+<li>application/x-www-form-urlencoded（简单数据，默认）<br> k=v &amp; k=v &amp; k=v这种方式</li>
+<li>multipart/form-data（上传文件内容）<br>定界符分割各个数据 </li>
+</ol>
 <hr>
 <h3 id="ajax"><a href="#ajax" class="headerlink" title="ajax"></a>ajax</h3><p>表单提交比较稳定，尤其在网络很差的时候，ajax更偏向用户体验。</p>
 <p><strong>http 状态码：</strong></p>
