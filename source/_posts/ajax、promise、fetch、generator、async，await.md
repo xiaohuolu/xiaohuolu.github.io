@@ -1,5 +1,5 @@
 ---
-title: ajax、promise、generator、async，await
+title: ajax、fetch、promise、generator、async，await
 date: 2019-03-15 16:10:12
 tags: js
 categories: 前端
@@ -28,6 +28,38 @@ categories: 前端
       console.log(err)
   })
 ```
+
+### fetch
+用来替代原生xhr
+1.读取
+2.解析
+
+``` 
+  //文本变量
+  let oBtn=document.getElementById('btn');
+  //图片变量
+  let oImg=document.getElementById('img');
+  oBtn.onclick = async function(){
+    //解析文本
+    //请求
+    let res = await fetch('data/1.json');
+    //解析
+    let json = await res.json();
+
+
+    //解析图片，音频，视频等
+    //请求
+    let res = await fetch('data/1.json');
+    let data = await res.blob();
+    //浏览器帮你处理二进制数据
+    let url = URL.createObjectURL(data);
+    oImg.src = url
+    console.log(json);
+  }
+
+
+```
+
 ### promise
 1. 解决回调地狱
 2. 有局限，对带逻辑的异步操作比较麻烦

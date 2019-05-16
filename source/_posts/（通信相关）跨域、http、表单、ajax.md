@@ -1,5 +1,5 @@
 ---
-title: （通信相关）跨域、http、表单、ajax
+title: (通信相关)跨域、http、formData、表单、ajax、缓存
 date: 2019-04-11 10:24:42
 tags: js
 categories: 前端
@@ -23,6 +23,112 @@ xss（跨站脚本攻击），其实就是利用了你的懒，从其他域名�
 1.很多网站都有很多域名，如360buy.com - jd.com ，  t.sina.cn - weibo.com  你知道他们是一个网站下的域名，但浏览器不知道。
 2.第三方数据交互的需求，如一些网站有qq登录，微信登录，微博登录这种，一般是你发一个校验请求给第三方，他来帮你校验，这种时候必须要跨域。
 
+**JSONP**
+原理：script标签不受跨域限制，准备一个函数，告诉外部js，在外部js中调用这个函数，把参数传过来。为了不在引入js的时候把参数写死，script标签都是动态创建的。
+
+原生js示例：
+```
+ function show({s}){
+   console.log(s)
+ }
+
+ let oTxt=document.getElementById('txt1');
+ oTxt.oninput=function(){
+   let url = `https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=${this.value}&cb=show`
+   let oS=document.createElement('script');
+   oS.src=url;
+   
+   document.head.appendChild(oS);
+ }
+
+ //html
+ <input type='text' id='txt1'>
+```
+
+jQuery示例：
+```
+ $.ajax({
+   url:'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',
+   data: {wd:'qq'},
+   dataType:'jsonp',  //告诉ajax类型是jsonp
+   jsonp:'cb'        // 告诉ajax回调名字
+ }).then(({s})=>{
+   console.log(s)
+ },err=>{
+   console.log('失败')
+ })
+```
+
+**formData**
+*formdata是ajax2.0的一个新特征，非常好用，上传表单就用它就可以了*
+*formdata可以帮助我们构建一个表单*
+*直接弄个form扔给它就可以了*
+
+jQuery:
+```
+  //html
+  <form id='form1' action='xxx'  method='post'>
+  用户：<input type='text' name='user'>
+  密码：···
+  文件：···
+  <input type='submit' value='提交'>
+  <form>
+
+  //jq
+  $('#form1').on('submit',function(){
+    let formData=new FormData(this);
+    $.ajax({
+      url:this.action,
+      type:this.method,
+      data:formdata,
+      processData:false,  //告诉ajax不要处理我的数据
+      contentType:false   //告诉ajax不要篡改contentType
+    })
+
+    return false
+  })
+```
+html是div的情况:
+```
+//html
+  <div id='div1' action='xxx'  method='post'>
+  用户：<input type='text' id='user'>
+  密码：···
+  文件：···
+  <input id='btn1' type='submit' value='提交'>
+  <div>
+//js
+  let oBtn=document.querySelector('#btn1');
+  oBtn.onclick=function(){
+     let formData=new FormData()
+     //给formdata里追加
+     formdata.append('username',document.querySelector('#user').value);
+     formdata.append('password',document.querySelector('#pass').value);
+     formdata.append('username',document.querySelector('#f1').files[0]);
+
+     let xhr=new XMLHttpRequest();
+     xhr.open('post',url,true)
+     xhr.send(formData);
+     xhr.onreadystatechange=function(){
+       if(xhr.readyState==4){
+         if(xhr.status==200){
+           console.log('成功')
+         }else{
+           console.log('失败')
+         }
+       }
+     }
+  }
+```
+
+**node跨域写法**
+```
+ const http = require('http');
+ http.createServer((req,res)=>{
+   // 设置一个access-control-allow-origin头
+   res.setHeader('access-control-allow-origin','*');
+ })
+```
 ---
 
 ### http，https 
@@ -37,6 +143,10 @@ xss（跨站脚本攻击），其实就是利用了你的懒，从其他域名�
    - 强制https
    - 自带双向通信
    - 多路复用
+   - 加密
+   - 头部压缩
+   - 服务器推送
+   - 管线操作
 
  
   **浏览器与服务器建立通信的过程，三次握手：**
@@ -60,15 +170,22 @@ https s就是ssl协议
      - 3.不保证顺序
 
 ---
-  **osi七层交换参考模型**
+  **OSI七层交换参考模型**
+    *简单来说就是很久以前互联网刚刚诞生的时候，很多网络的结构是不一样的，乱套了，连不起来。电气工程师学会就推出了一个七层的参考模型，这个就成为后来标准互联网的一个模型。*
   
-  1.物理层                               物理学家、通信工程--材料、电压
-  2.链路层                               内网寻址    ARP、ICMP
-  3.网络层                               外网寻址    IP
-  4.传输层                               通信稳定性  tcpv
-  5.表现层（被传输层取代了）                统一各个网络的结构
-  6.会话层（有其他方式可以记录，比如cookie）  希望可以记录状态，不希望无状态
-  7.应用层                               HTTP、FTP、SMTP、POP3
+  **1.物理层**                               
+  物理学家、通信工程--材料、电压
+  **2.链路层**                               
+  内网寻址 。ARP、ICMP。你的手机，电脑，跟你家的路由器走的就是链路层
+  **3.网络层**                               
+  外网寻址 。比如你的计算机和我的计算机之间的通信，也就是IP层
+  **4.传输层**                              
+   通信稳定性。保证传输质量，能帮你自动重传，保证顺序，TCP协议就是这层。
+  **5.表现层**（被传输层取代了）                
+  统一各个网络的结构
+  **6.会话层**（有其他方式可以记录，比如cookie）  
+  希望可以记录状态，不希望无状态
+  **7.应用层**                               HTTP、FTP、SMTP、POP3
 
   **五层模型**
   1.物理层
@@ -99,6 +216,7 @@ https s就是ssl协议
    - method 方式——GET、POST、PUT、HEADER、DELETE、也可以自定义
    - name   必须要加，可以重复。服务器靠name才知道你传的是什么
    - submit 提交按钮
+   - enctype 选择提交哪种数据
 - 2.数据提交方法（GET和POST安全性完全一样，https才是真安全）
    - GET 
    - POST   
@@ -111,6 +229,13 @@ https s就是ssl协议
 1.开始提交的时候禁用submit
 2.完成后（成功、失败）启用submit
 
+**表单的三种enctype**
+1. text/plain（纯文本）
+    纯文本，用的很少               
+2. application/x-www-form-urlencoded（简单数据，默认）
+    k=v & k=v & k=v这种方式
+3. multipart/form-data（上传文件内容）
+   定界符分割各个数据 
 ---
 ### ajax
 表单提交比较稳定，尤其在网络很差的时候，ajax更偏向用户体验。
@@ -236,4 +361,5 @@ https s就是ssl协议
 串行，一个一个来，前一个操作如果没完事，后面的等着
 **异步**
 并行，一堆一块进行，前面完没完事无所谓，后面都能继续开始。
+
 
