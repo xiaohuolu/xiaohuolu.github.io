@@ -1,31 +1,31 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>git | 冰璃</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">git</h1><a id="logo" href="/.">冰璃</a><p class="description">雪肤红眸，素发如瀑</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">git</h1><div class="post-meta">Sep 28, 2020<span> | </span><span class="category"><a href="/categories/项目管理/">项目管理</a></span></div><div class="post-content"><hr>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ul>
-<li>git config 配置信息</li>
-<li>git config –list  查看配置信息</li>
-<li>git status 查看状态</li>
-<li>git init 初始化仓库</li>
-<li>rm -rf .git 删除git</li>
-<li>git add  添加到暂存区</li>
-<li>git rm –cached 从暂存区中删除</li>
-<li>git reset HEAD 文件名   从暂存区中移除</li>
-<li>git checkout – 文件名  将文件恢复到上一次修改</li>
-<li>git commit -m ‘描述’  提交并描述</li>
-<li>git log   查看提交的历史记录</li>
-<li>git show  查看某次提交的内容</li>
-<li>git branch  显示项目所有分支</li>
-<li>git branch 分支名  || git checkout -b 分支名   创建分支</li>
-<li>git checkout 分支名 切换分支</li>
-<li>git reset HEAD~  重置最后一次提交,可以重新修改并提交</li>
-<li>git merge 分支名   合并分支</li>
-<li>git remote -v    查看项目的远程仓库</li>
-<li>git remote add 仓库名 仓库地址  添加远程仓库</li>
-<li>git clone 仓库地址  把远程仓库下载到本地</li>
-<li>git push 仓库名 本地分支名   推送（上传）</li>
-<li>git pull 仓库名 仓库分支 拉取（下载）</li>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><ul>
+<li><strong>git config</strong> 配置信息</li>
+<li><strong>git config –list</strong>  查看配置信息</li>
+<li><strong>git status</strong> 查看状态</li>
+<li><strong>git init</strong> 初始化仓库</li>
+<li><strong>rm -rf .git</strong> 删除git</li>
+<li><strong>git add</strong>  添加到暂存区</li>
+<li><strong>git rm –cached</strong> 从暂存区中删除</li>
+<li><strong>git reset HEAD 文件名</strong>   从暂存区中移除</li>
+<li><strong>git checkout – 文件名</strong>  将文件恢复到上一次修改</li>
+<li><strong>git commit -m ‘描述’</strong>  提交并描述</li>
+<li><strong>git log</strong>   查看提交的历史记录</li>
+<li><strong>git show</strong>  查看某次提交的内容</li>
+<li><strong>git branch</strong>  显示项目所有分支</li>
+<li><strong>git branch 分支名  || git checkout -b 分支名</strong>   创建分支</li>
+<li><strong>git checkout 分支名</strong> 切换分支</li>
+<li><strong>git reset HEAD~</strong>  重置最后一次提交,可以重新修改并提交</li>
+<li><strong>git merge 分支名</strong>   合并分支</li>
+<li><strong>git remote -v</strong>    查看项目的远程仓库</li>
+<li><strong>git remote add 仓库名 仓库地址</strong>  添加远程仓库</li>
+<li><strong>git clone 仓库地址</strong>  把远程仓库下载到本地</li>
+<li><strong>git push 仓库名 本地分支名</strong>   推送（上传）</li>
+<li><strong>git pull 仓库名 仓库分支</strong> 拉取（下载）</li>
 </ul>
 <hr>
-<h2 id="全局信息配置"><a href="#全局信息配置" class="headerlink" title="全局信息配置"></a>全局信息配置</h2><p>git config</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">   </span><br><span class="line">    git config --global user.name &apos;用户名&apos;</span><br><span class="line">    git config --global user.email &apos;邮箱&apos;</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">## 暂存区</span><br><span class="line">git add 添加到暂存区</span><br><span class="line">git reset HEAD 文件名  从暂存区中移除</span><br></pre></td></tr></table></figure>
+<h3 id="全局信息配置"><a href="#全局信息配置" class="headerlink" title="全局信息配置"></a>全局信息配置</h3><p>git config</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">   </span><br><span class="line">    git config --global user.name &apos;用户名&apos;</span><br><span class="line">    git config --global user.email &apos;邮箱&apos;</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">### 暂存区</span><br><span class="line">git add 添加到暂存区</span><br><span class="line">git reset HEAD 文件名  从暂存区中移除</span><br></pre></td></tr></table></figure>
 <pre><code>git add 文件名
 git add .  || git add --all  // 添加全部修改
 
@@ -33,16 +33,16 @@ git add .  || git add --all  // 添加全部修改
 
 git reset HEAD src/main.js
 </code></pre><p><code>`</code></p>
-<h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><p>git branch 显示所有分支<br>git branch 分支名  || git checkout -b 分支名    创建分支<br>git checkout 分支名 切换分支</p>
-<h2 id="配置SSH秘钥"><a href="#配置SSH秘钥" class="headerlink" title="配置SSH秘钥"></a>配置SSH秘钥</h2><ul>
+<h3 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h3><p>git branch 显示所有分支<br>git branch 分支名  || git checkout -b 分支名    创建分支<br>git checkout 分支名 切换分支</p>
+<h3 id="配置SSH秘钥"><a href="#配置SSH秘钥" class="headerlink" title="配置SSH秘钥"></a>配置SSH秘钥</h3><ul>
 <li>SSH-keygen  生成秘钥</li>
 <li>ls ~/.ssh   查看秘钥目录</li>
 <li>cat ~/.ssh/id_rsa.pub  查看秘钥，方便复制</li>
 </ul>
 <p>打开github并配置秘钥</p>
-<h2 id="添加远程仓库"><a href="#添加远程仓库" class="headerlink" title="添加远程仓库"></a>添加远程仓库</h2><p>git init<br>git add README.md<br>git commit -m “first commit”<br>git branch -M master<br>git remote add 仓库名 仓库地址<br>git push -u origin master</p>
+<h3 id="添加远程仓库"><a href="#添加远程仓库" class="headerlink" title="添加远程仓库"></a>添加远程仓库</h3><p>git init<br>git add README.md<br>git commit -m “first commit”<br>git branch -M master<br>git remote add 仓库名 仓库地址<br>git push -u origin master</p>
 <p>把本地master分支的东西上传到远程origin仓库中</p>
-<h2 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h2><p>忽略不需要做源代码管理的东西。  创建一个.gitignore文件，配置一下要忽略的文件就好。</p>
+<h3 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h3><p>忽略不需要做源代码管理的东西。  创建一个.gitignore文件，配置一下要忽略的文件就好。</p>
 </div><div class="tags"><a href="/tags/utils/">utils</a></div><div class="post-nav"><a class="next" href="/2020/07/14/webpack/">webpack</a></div><div id="container"></div><link rel="stylesheet" type="text/css" href="//unpkg.com/gitalk/dist/gitalk.css?v=0.0.0"><script type="text/javascript" src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js?v=0.0.0"></script><script type="text/javascript" src="//unpkg.com/gitalk/dist/gitalk.min.js?v=0.0.0"></script><script>var gitalk = new Gitalk({
   clientID: 'a41b62a0fd6bbf0e4420',
   clientSecret: '967058332166270e103b22da8f361fff4a9cedf9',
