@@ -436,7 +436,7 @@ http.createServer((req,res)=>{
 ---
 
 ### process
-判断开发环境和生产环境的简单方法之一：
+如果开发环境是Windows，生产环境是linux，可以用这种方法判断开发环境和生产环境：
 
 *取得process.env.OS的值，通过判断是不是Window_NT，来确定是开发环境还是生产环境,true就是dev*
 

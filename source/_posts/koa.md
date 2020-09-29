@@ -296,7 +296,7 @@ ctx.redirect('')
       maxage:20*86400*1000
   }))
    //其他缓存30天
-  staticRouter.all('',static('./static',{
+  staticRouter.all('*',static('./static',{
       maxage:30*86400*1000  
   }))
 
