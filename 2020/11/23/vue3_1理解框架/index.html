@@ -1,0 +1,76 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>vue3_1理解框架 | 冰璃</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">vue3_1理解框架</h1><a id="logo" href="/.">冰璃</a><p class="description">雪肤红眸，素发如瀑</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">vue3_1理解框架</h1><div class="post-meta">Nov 23, 2020<span> | </span><span class="category"><a href="/categories/前端/">前端</a></span></div><div class="post-content"><h3 id="准备开发环境与工具-vscode、git、node、npm、yarn"><a href="#准备开发环境与工具-vscode、git、node、npm、yarn" class="headerlink" title="准备开发环境与工具(vscode、git、node、npm、yarn)"></a>准备开发环境与工具(vscode、git、node、npm、yarn)</h3><p><strong>vscode：安装插件：</strong></p>
+<ol>
+<li>vetur</li>
+<li>prettier</li>
+</ol>
+<p>根目录下创建.prettierrc:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;singleQuote&quot;:true,    //默认单引号</span><br><span class="line">    &quot;trailingComma&quot;:&quot;all&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>安装 vue</strong><br>npm install @vue/cli –global</p>
+<hr>
+<h3 id="用-Vue-Cli-创建一个-Vue-项目"><a href="#用-Vue-Cli-创建一个-Vue-项目" class="headerlink" title="用 Vue Cli 创建一个 Vue 项目"></a>用 Vue Cli 创建一个 Vue 项目</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create cxn-vue</span><br></pre></td></tr></table></figure>
+<p>选择 Manually select features，表示自己选要用的功能，空格选中，选完回车，然后选择 3.X 版本。</p>
+<p>提示项目：</p>
+<ol>
+<li>use class-style component syntax?(是否使用 class 类型的组件)：n</li>
+<li>use babel alongside Typescript?(是否让 babel 和 typescript 一块用)：n</li>
+<li>use history mode for router?(是否使用 history 模式的路由)：y</li>
+<li>pick a linter / formatter config(检查代码的工具的配置)：默认</li>
+<li>pick additional lint features(什么时候执行 lint)：lint on save</li>
+<li>where do you prefer placing config for babel,eslint,etc.?(这些工具的配置放哪里)：in dedicated config files(单独放在配置文件里)</li>
+<li>save this as a preset for future projects(是否要保存上面的这些预设)：n</li>
+</ol>
+<p>这样 vue-cli 会自动帮我们创建这个项目，并安装所有依赖</p>
+<p><strong>运行 vue 项目</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run serve</span><br></pre></td></tr></table></figure>
+<p>这里解决一个 mac 系统的报错：Cannot find module ‘vue-loader-v16/package.json’ ，重新安装一下这个模块 , npm i –save-dev vue-loader-v16</p>
+<h3 id="了解-vue-项目结构"><a href="#了解-vue-项目结构" class="headerlink" title="了解 vue 项目结构"></a>了解 vue 项目结构</h3><p>node_modules：安装的包都会放在这里。<br>public：公开的资源。<br>src：开发目录。<br>.browserslistrc：可以在这个文件里说明项目支持的浏览器，项目里的一些工具会根据这个文件的配置信息去做出响应的反应。<br>.eslintrc.js：eslint 的配置文件，可以在这里配置代码检查的一些规则。<br>.gitignore：源代码管理忽略配置<br>.package：描述项目定义的一些命令，还有项目的依赖。<br>.tsconfig.json：typescript 的配置文件。</p>
+<h3 id="了解-Vue-应用的结构"><a href="#了解-Vue-应用的结构" class="headerlink" title="了解 Vue 应用的结构"></a>了解 Vue 应用的结构</h3><p>src 目录：<br>assets：静态资源文件。<br>components：单文件组件<br>router：路由<br>views：vue 里的组件<br>App.vue：主组件，创建应用的时候要告诉 vue 应用的主组件是谁<br>main.ts：入口文件。</p>
+<h3 id="了解-Vue-应用的组件"><a href="#了解-Vue-应用的组件" class="headerlink" title="了解 Vue 应用的组件"></a>了解 Vue 应用的组件</h3><p>组件就是应用里的一个页面，或者页面里的一块界面，组件可以组合在一起使用。组件分为三个区域：template 是组件的模板，用 html 来设计组件界面的结构。style 就是组件的样式，也可以把样式放在样式表里，在 style 里使用 import 导入。脚本可以放在 script 里面。</p>
+<h3 id="了解应用的-store"><a href="#了解应用的-store" class="headerlink" title="了解应用的 store"></a>了解应用的 store</h3><p>state：应用里需要用到的数据。<br>mutations：设置 state 用的一些方法。<br>actions：获取数据用的方法。可以定义一些方法，执行的时候获取到数据，得到数据后可以在 actions 里面去执行 mutations 来设置 state。</p>
+<h3 id="了解如何部署应用"><a href="#了解如何部署应用" class="headerlink" title="了解如何部署应用"></a>了解如何部署应用</h3><p>vue 中的代码需要编译一下才能在浏览器中运行。package.json 中定义了一些命令。<strong>serve</strong>可以帮我们创建一个 web 服务器，会实时编译应用。如果已经完成了开发，准备把应用部署到服务器上，要做的就是在服务器上搭建一个 web 服务器，然后编译一下 vue 应用，再把编译好的应用放在这台 web 服务器上就行了。<strong>build</strong>可以帮我们编译应用，编译完成后会放在 dist 目录中，要部署的就是这个 dist 目录。可以在服务器上安装一个 nginx，配置一台服务器，再把 dist 目录上传到 web 服务器上。</p>
+<p>部署流程示范：</p>
+<ol>
+<li>项目主机名指向服务器</li>
+<li>登录服务器：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@服务器ip(xx.xxx.xx.xx)</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>进入根目录，给要部署的应用创建一个目录</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /mnt</span><br><span class="line">mkdir vue-demo</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>将编译后的应用放在这个目录下面。<br>切换到项目下面，使用 scp 这个命令，把本地文件或目录复制到远程服务器上，-r 表示要复制的是目录。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r dist root@服务器ip和位置(xx.xxx.xx.xx:/mnt/vue-demo)</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>查看远程服务器是否复制成功，切换到服务器的终端标签：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls vue-demo/dist</span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>配置 nginx 服务器(contOS)，先安装 nginx</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dnf install nginx</span><br><span class="line">systemctl start nginx //启动nginx</span><br><span class="line">cd /etc/nginx/conf.d  //进入nginx配置目录</span><br><span class="line">vi vue-demo.ninghao.net.conf           //创建配置文件，按小i进入编辑模式</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">    listen 80;          //端口</span><br><span class="line">    server_name vue-demo.ninghao.net   //服务器名字，指向服务器ip</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        root /mnt/vue-demo/dist;  //设置根目录</span><br><span class="line">        index index.html;  //默认要打开的东西</span><br><span class="line">        try_files $uri $uri/ /index.html</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>esc，:wq</p>
+<ol start="7">
+<li>测试 nginx 配置</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -t</span><br></pre></td></tr></table></figure>
+<ol start="8">
+<li>让配置生效，重载服务</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl reload nginx</span><br></pre></td></tr></table></figure>
+<ol start="9">
+<li>打开浏览器，访问一下 vue-demo.ninghao.net 就可以看见项目页面了。</li>
+</ol>
+</div><div class="tags"><a href="/tags/VUE/">VUE</a></div><div class="post-nav"><a class="next" href="/2020/11/19/部署应用/">部署应用</a></div><div id="container"></div><link rel="stylesheet" type="text/css" href="//unpkg.com/gitalk/dist/gitalk.css?v=0.0.0"><script type="text/javascript" src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js?v=0.0.0"></script><script type="text/javascript" src="//unpkg.com/gitalk/dist/gitalk.min.js?v=0.0.0"></script><script>var gitalk = new Gitalk({
+  clientID: 'a41b62a0fd6bbf0e4420',
+  clientSecret: '967058332166270e103b22da8f361fff4a9cedf9',
+  repo: 'xiaohuolu.github.io',
+  owner: 'xiaohuolu',
+  admin: ['xiaohuolu'],
+  id: md5(location.pathname),
+  distractionFreeMode: false
+})
+gitalk.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/后台/">后台</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构/">架构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/项目管理/">项目管理</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/服务器/" style="font-size: 15px;">服务器</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/node/" style="font-size: 15px;">node</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/VUE/" style="font-size: 15px;">VUE</a> <a href="/tags/utils/" style="font-size: 15px;">utils</a> <a href="/tags/h5/" style="font-size: 15px;">h5</a> <a href="/tags/操作系统/" style="font-size: 15px;">操作系统</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/网络协议/" style="font-size: 15px;">网络协议</a> <a href="/tags/架构/" style="font-size: 15px;">架构</a> <a href="/tags/git/" style="font-size: 15px;">git</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/11/23/vue3_1理解框架/">vue3_1理解框架</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/11/19/部署应用/">部署应用</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/11/19/生产环境/">生产环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/11/19/操作系统/">操作系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/11/18/自动化测试/">自动化测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/11/18/云服务器/">云服务器</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/11/09/用户点赞/">用户点赞</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/11/06/用户头像/">用户头像</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/11/03/内容列表/">内容列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/11/02/发表评论/">发表评论</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">冰璃.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
