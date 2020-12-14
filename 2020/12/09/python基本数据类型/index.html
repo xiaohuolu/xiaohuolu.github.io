@@ -1,0 +1,113 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>python基本数据类型 | 冰璃</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">python基本数据类型</h1><a id="logo" href="/.">冰璃</a><p class="description">雪肤红眸，素发如瀑</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">python基本数据类型</h1><div class="post-meta">Dec 9, 2020<span> | </span><span class="category"><a href="/categories/后台/">后台</a></span></div><div class="post-content"><h3 id="数字类型及操作"><a href="#数字类型及操作" class="headerlink" title="数字类型及操作"></a>数字类型及操作</h3><p>与数学中整数的概念一致。有四种进制表示形式。</p>
+<ul>
+<li>十进制：1010,99-217</li>
+<li>二进制：0b010,-0B101</li>
+<li>八进制：0o123,-0O456</li>
+<li>十六进制：0x9a,-0X89</li>
+</ul>
+<hr>
+<ul>
+<li>pow(x,y[,z])函数：计算 x 想算多大算多大,z 可省略，对 z 做模运算。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pow(2,100)</span><br><span class="line">pow(2,pow(2,15))</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="浮点类型"><a href="#浮点类型" class="headerlink" title="浮点类型"></a>浮点类型</h3><p>与数学中实数的概念一致。</p>
+<ul>
+<li>带有小数点及小数的数字。</li>
+<li>浮点数取值范围和小数精度都存在限制，但常规计算可忽略。</li>
+</ul>
+<p><em>浮点数间运算存在不确定尾数，不是 bug，主要是由于在计算机中所有数字都是用二进制来表示，二进制表示的长度非常长的时候会截取前 53 位的字符，运算后再转换为十进制的过程中会有偏差</em></p>
+<p>这就导致了一个问题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;0.1+0.2 == 0.3</span><br><span class="line">False</span><br></pre></td></tr></table></figure>
+<p>为了解决这个问题，可以使用 round：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;round(0.1+0.2,1) == 0.3    #四舍五入函数，有x、d两个参数，x表示你要四舍五入的那个数，d表示四舍五入后取几位小数保留。</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+<p>在浮点数之间运算和比较的时候，用 round 函数辅助。因为不确定尾数一般发生在 10 的-16 次方这样的地方，也就是说它并不是在小数的前几位，而是在十进制的大概 16 位上下产生的，所以 round 函数非常有效。</p>
+<hr>
+<p><strong>浮点数可以采用科学计数法表示</strong><br>使用字母 e 或 E 作为幂的符号，以 10 为基数，格式如下：<br><a>e<b> 表示 a*10 的 b 次方</b></a></p>
+<p>例如：<br>4.3e-3 为 0.0043<br>9.6e5 为 960000.0</p>
+<hr>
+<h3 id="数值运算操作符"><a href="#数值运算操作符" class="headerlink" title="数值运算操作符"></a>数值运算操作符</h3><ul>
+<li>-</li>
+<li>-</li>
+<li>-</li>
+<li>/</li>
+<li>// 整数除</li>
+<li>% 余数，模运算 10%3 =1</li>
+<li>x<strong>y x 的 y 次方，当 y 是小数时，开方运算，10 </strong> 0.5 是 根号 10</li>
+</ul>
+<hr>
+<h3 id="数值运算函数"><a href="#数值运算函数" class="headerlink" title="数值运算函数"></a>数值运算函数</h3><ul>
+<li>abs(x) 求 x 的绝对值 abs(-10.01)为 10.01</li>
+<li>divmod(x,y) 商余，同时输出商和余数 divmod(10,3)为(3,1);</li>
+<li>round(x[,d]) 四舍五入，d 为小数点位数</li>
+<li>max(x1,x2,x3…) 最大值</li>
+<li>min(x1,x2,x3…) 最小值</li>
+<li>int(x) 将 x 变成整数，舍弃小数部分</li>
+<li>float(x) 将 x 变成浮点数，增加小数部分。</li>
+</ul>
+<hr>
+<h3 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h3><p>三个单引号也是字符串的一种表示，如果这个字符串没有赋值给变量，或者没有进行操作，那就可以当注释使用，python 中并没有提供多行注释的表示方式。</p>
+<p><strong>切片</strong><br>切片使用[M:N]来表示，其中 M 和 N 都不是必须的，M 缺失表示至开头，N 缺失表示至结尾。<br>根据步长对字符串切片使用的是[M:N:K]，比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;0一二三四五六七八九十&quot;[1:8:2]</span><br></pre></td></tr></table></figure>
+<p>结果是”一三五七”</p>
+<p>如果你想从后往前来，有个小技巧：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;0一二三四五六七八九十&quot;[::-1]</span><br></pre></td></tr></table></figure>
+<p>MN 都没有就表示至开头和至结尾，步长为-1 表示从后往前逐一取出。</p>
+<p><strong>操作符</strong><br>x + y 连接两个字符串<br>x * n 复制 n 次字符串 x<br>x in s x 是否在 s 中，返回 True，否则 False</p>
+<p><strong>字符串处理函数</strong><br>len(x) 返回 x 长度<br>str(x) 转换为字符串 str(123)为”123” ， str([1,2]) 为 “[1,2]” 与 eval()相反<br>hex(x) 或 oct(x) 转换成 16 进制或 8 进制<br>chr(u) u 为 Unicode 编码，返回对应的字符<br>ord(x) x 为字符，返回对应的编码</p>
+<p><strong>字符串处理方法</strong><br>str.lower()和 str.upper() 转换大小写<br>str.split(sep=None) 返回一个列表，用 sep 分割。”ABC”.split(“,”) 为[“A”,”B”,”C”]<br>str.count(sub) 返回 sub 在 str 中出现的次数 “abc”.count(“a”) 结果为 1<br>str.replace(old,new) 返回 str 副本，所有 old 被替换为 new “python”.replace(“n”,”n1”)结果为”python1”<br>str.center(width[,fillchar]) str 根据 width 居中，fillchar 可选，表示空白地方的填充 “python”.center(20,”=”) 结果为”====python====”<br>str.strip(chars) 去除 str 左右 chars 列出的字符 “= python”.strip(“ =np”) 结果为”ytho”<br>str.join(iter) 在 iter 变量每个元素后面增加一个 str “,”.join(“123”) 结果为 1,2,3</p>
+<p><strong>格式化</strong><br>str.format() 格式化 需要用到槽，槽只在字符串中有用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;&#123;1&#125;:计算机&#123;0&#125;的cpu占用率为&#123;2&#125;%&quot;.format(&quot;2020-10-10&quot;,&quot;C&quot;,10)  //将format中的数据按槽的标记插入进去</span><br></pre></td></tr></table></figure>
+<p>格式控制：<br>: 引导符号<br>, 数字的千位分隔符<br>. 精度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;&quot;&#123;0:=^20&#125;&quot;.format(&quot;PYTHON&quot;)</span><br></pre></td></tr></table></figure>
+<p>=号是填充符号，^表示居中对齐，将 format 中的第一个参数居中对齐，20 是输出宽度。 结果就是”====PYTHON====”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;&quot;&#123;0:*&gt;20&#125;&quot;.format(&quot;BIT&quot;)</span><br></pre></td></tr></table></figure>
+<p>*是填充符号，&gt;是右对齐。结果为 “*************BIT”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;&quot;&#123;:10&#125;&quot;.format(&quot;BIT&quot;)</span><br></pre></td></tr></table></figure>
+<p>结果是”BIT “</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;&quot;&#123;0:,.2f&#125;&quot;.format(12345.6789)</span><br></pre></td></tr></table></figure>
+<p>“12,345.68”</p>
+<hr>
+<h3 id="time-库的使用"><a href="#time-库的使用" class="headerlink" title="time 库的使用"></a>time 库的使用</h3><p>是 python 中处理时间的标准库</p>
+<ul>
+<li>计算机时间的表达</li>
+<li>提供获取系统时间并格式化输出功能</li>
+<li>提供系统级精确计时功能，用于程序性能分析</li>
+</ul>
+<p>使用方法：<br>import time<br>time.<b>()</b></p>
+<p><strong>time 库包括三类函数</strong></p>
+<ul>
+<li>时间获取 time() ctime() gmtime()</li>
+<li>时间格式化 strftime() strptime()</li>
+<li>程序计时 sleep() perf_counter()</li>
+</ul>
+<p><strong>时间获取</strong><br>time()：获取当前时间戳，即计算机内部时间值，浮点数 <em>16252152731.123123</em><br>ctime()： 获取当前时间并以易读方式表示，返回字符串 <em>Fri Jan 26 12:11:20 2020</em><br>gmtime()：获取当前时间，表示为计算机可处理的时间格式，叫做 struct_time 格式。</p>
+<p><strong>时间格式化</strong></p>
+<p>格式化字符串：<br>%Y：年份<br>%m：月份<br>%B：月份名称<br>%b：月份名称缩写<br>%d：日期<br>%A：星期<br>%a：星期缩写<br>%H：小时（24h）<br>%I：小时（12h）<br>%p：上/下午<br>%M：分钟<br>%S：秒</p>
+<p><strong>格式化函数</strong></p>
+<p>strftime(tpl,ts)：tpl 是格式化模板字符串，用来定义输出结果，ts 是计算机内部时间类型变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;t=time.gmtime()</span><br><span class="line">&gt;&gt;&gt;time.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;,t)</span><br><span class="line">&apos;2020-01-26 12:22:30&apos;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>strptime(str,tpl)：与 strftime()是互补关系，str 是字符串形式的时间值，tpl 是格式化模板字符串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;timeStr = &apos;2020-10-02 12:22:20&apos;</span><br><span class="line">&gt;&gt;&gt;time.strptime(timeStr,&quot;%Y-%m-%d %H:%M:%S&quot;)</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>程序计时</strong><br>perf_counter()： 返回一个 cpu 级别的精确时间计数值，单位为秒，由于这个计数值起点不确定，连续调用差值才有意义。<br>sleep(s)： s 拟休眠的时间，单位秒，可以是浮点数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;def wait():</span><br><span class="line">       time.sleep(3.3)</span><br><span class="line">&gt;&gt;&gt;wait()  #程序将等待3.3秒后退出</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="文本进度条例子"><a href="#文本进度条例子" class="headerlink" title="文本进度条例子"></a>文本进度条例子</h3><ul>
+<li>采用 sleep 模拟一个持续的进度。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 文本进度条</span><br><span class="line">import time</span><br><span class="line">scale = 10</span><br><span class="line">print(&quot;------开始------&quot;)</span><br><span class="line">for i in range(scale+1):</span><br><span class="line">    a = &apos;*&apos; * i</span><br><span class="line">    b = &apos;.&apos; * (scale - i)</span><br><span class="line">    c = (i/scale)*100</span><br><span class="line">    print(&quot;&#123;:^3.0f&#125;%[&#123;&#125;-&gt;&#123;&#125;]&quot;.format(c,a,b))</span><br><span class="line">    time.sleep(0.5)</span><br><span class="line">print(&quot;------结束------&quot;)</span><br></pre></td></tr></table></figure>
+<p>升级完整版：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 文本进度条完整</span><br><span class="line">import time</span><br><span class="line">scale = 50</span><br><span class="line">print(&quot;执行开始&quot;.center(scale//2,&quot;-&quot;))</span><br><span class="line">start = time.perf_counter()</span><br><span class="line">for i in range(scale +1 ):</span><br><span class="line">    a = &apos;*&apos; * i</span><br><span class="line">    b = &apos;.&apos; * (scale - i)</span><br><span class="line">    c = (i/scale)*100</span><br><span class="line">    dur = time.perf_counter() - start</span><br><span class="line">    print(&quot;\r&#123;:^3.0f&#125;%[&#123;&#125;-&gt;&#123;&#125;]&#123;:.2f&#125;s&quot;.format(c,a,b,dur),end=&quot;&quot;)</span><br><span class="line">    time.sleep(0.1)</span><br><span class="line">print(&quot;\n&quot;+&quot;执行结束&quot;.center(scale//2,&quot;-&quot;))</span><br></pre></td></tr></table></figure>
+</div><div class="tags"><a href="/tags/python/">python</a></div><div class="post-nav"><a class="next" href="/2020/12/07/vue3-8反应系统、组合接口/">vue3_8反应系统、组合接口</a></div><div id="container"></div><link rel="stylesheet" type="text/css" href="//unpkg.com/gitalk/dist/gitalk.css?v=0.0.0"><script type="text/javascript" src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js?v=0.0.0"></script><script type="text/javascript" src="//unpkg.com/gitalk/dist/gitalk.min.js?v=0.0.0"></script><script>var gitalk = new Gitalk({
+  clientID: 'a41b62a0fd6bbf0e4420',
+  clientSecret: '967058332166270e103b22da8f361fff4a9cedf9',
+  repo: 'xiaohuolu.github.io',
+  owner: 'xiaohuolu',
+  admin: ['xiaohuolu'],
+  id: md5(location.pathname),
+  distractionFreeMode: false
+})
+gitalk.render('container')
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/后台/">后台</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/服务器/">服务器</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构/">架构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/项目管理/">项目管理</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/utils/" style="font-size: 15px;">utils</a> <a href="/tags/h5/" style="font-size: 15px;">h5</a> <a href="/tags/node/" style="font-size: 15px;">node</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/VUE/" style="font-size: 15px;">VUE</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/服务器/" style="font-size: 15px;">服务器</a> <a href="/tags/操作系统/" style="font-size: 15px;">操作系统</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/网络协议/" style="font-size: 15px;">网络协议</a> <a href="/tags/架构/" style="font-size: 15px;">架构</a> <a href="/tags/git/" style="font-size: 15px;">git</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/12/09/python基本数据类型/">python基本数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/12/07/vue3-8反应系统、组合接口/">vue3_8反应系统、组合接口</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/12/02/python基础/">python基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/11/30/vue3-7过渡动画/">vue3_7过渡动画</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/11/27/python安装/">python安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/11/26/vue3_6数据管理/">vue3_6数据管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/11/25/vue3-5应用路由/">vue3_5应用路由</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/11/25/vue3_4高级组件/">vue3_4高级组件</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/11/25/vue3-3表单元素/">vue3_3表单元素</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/11/24/vue3_2组件基础/">vue3_2组件基础</a></li></ul></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">冰璃.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
